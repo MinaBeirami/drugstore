@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<!--
+	Photon by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html dir="rtl">
+	<head>
+		{% load staticfiles %}
+        {% block head %}
+
+                <title>{% block title}Photon by HTML5 UP{% endblock title}</title>
+
+            {% block meta %}
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+            {% endblock meta %}
+            {% block stylesheet %}
+                <!--[if lte IE 8]><![endif]-->
+                <link rel="stylesheet" href="../statics/main.css" />
+                <!--[if lte IE 8]><link rel="../statics/stylesheet" href="ie8.css" /><![endif]-->
+                <!--[if lte IE 9]><link rel="../statics/stylesheet" href="ie9.css" /><![endif]-->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+            {% endblock stylesheet %}
+
+        {% endblock head %}
+	</head>
+	<body>
+
+		<!-- Header -->
+			<section id="header">
+				<div class="inner">
+					<span class="icon major fa-cloud"></span>
+					<h1>به اپلیکیشن خدمات داروخانه ای خوش آمدید</h1>
+					<p>دیگر برای تهیه دارو نیازی به مراجعه به داروخانه نیست.نزدیک ترین داروخانه های خود را بشناسید.دارو های خود را رزرو کنید و درب منزل خود تحویل بگیرید:))</p>
+					<div class="container">
+
+
+						<div class="row ">
+							<div class="col-sm-3 actions">
+								<a  href="showdrugs" class=" btn btn-block button scrolly">نمایش اطلاعات کلی دارو</a>
+							</div>
+							<div class="col-sm-3 actions">
+								<a  href="" class="btn btn-block button scrolly">نمایش اطلاعات داروخانه ها </a>
+							</div>
+							<div class="col-sm-3 actions">
+								<a  href="login" class="btn btn-block button scrolly">سفارش دارو </a>
+							</div>
+							<div class="col-sm-3 actions">
+								<a href="#" class="btn btn-block button scrolly"> دارو خانه های نزدیک</a>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+			</section>
+
+
+		<!-- Four -->
+			<section id="four" class="main style2 special">
+				<div class="container">
+
+					<ul class="actions uniform">
+						<li><a href="signup" class="button special">ثبت نام</a></li>
+						<li><a href="loginses" class="button">ورود</a></li>
+					</ul>
+				</div>
+			</section>
+
+
+
+		<!-- Scripts -->
+			<script src="../statics/html5shiv.js' "></script>
+			<script src="../statics/jquery.min.js"></script>
+			<script src="../statics/jquery.scrolly.min.js"></script>
+			<script src="../statics/skel.min.js"></script>
+			<script src="../statics/util.js"></script>
+			<!--[if lte IE 8]><!--<script src="{% static 'assets/js/ie/respond.min.js' %}"></script>--><![endif]-->
+			<script src="../statics/main.js"></script>
+
+	</body>
+</html>

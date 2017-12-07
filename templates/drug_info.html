@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    {% load staticfiles %}
+        {% block head %}
+
+                <title>{% block title}Photon by HTML5 UP{% endblock title}</title>
+
+            {% block meta %}
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+            {% endblock meta %}
+            {% block stylesheet %}
+                <!--[if lte IE 8]><![endif]-->
+                <link rel="stylesheet" href="../statics/main.css" />
+                <!--[if lte IE 8]><link rel="../statics/stylesheet" href="ie8.css" /><![endif]-->
+                <!--[if lte IE 9]><link rel="../statics/stylesheet" href="ie9.css" /><![endif]-->
+                <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+                <link href="../../static/authentication/login.css" rel="stylesheet">
+            {% endblock stylesheet %}
+
+        {% endblock head %}
+</head>
+<body class="{% block body_class %}nav-md {% endblock body_class %}">
+<div class="wrapper">
+
+    <form method = "post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+    </form>
+
+</div>
+
+
+
+    <h4>  اطلاعات کلی</h4>
+<div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+            <table>
+                <tr>
+                    <td>
+                        <thead>
+                        <th>اسم تبلیغاتی</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ cn }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <thead>
+                        <th>اسم مورد استفاده</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ gn }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <thead>
+                        <th>دوز</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ dose }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <thead>
+                        <th>اثرات جانبی</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ se }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <thead>
+                        <th>طریقه استفاده</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ htu }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <thead>
+                        <th>تضاد دارویی</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ di }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <thead>
+                        <th>ترکیبات</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ c }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <thead>
+                        <th>قیمت</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ p }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <thead>
+                        <th>ضرورت نسخه</th>
+                        </thead>
+                    </td>
+                    <td>
+                        {{ nop }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<!---->
+</section>
+</body>
+</html>

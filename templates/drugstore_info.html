@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+        {% block head %}
+
+                <title>{% block title}Photon by HTML5 UP{% endblock title}</title>
+
+            {% block meta %}
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+            {% endblock meta %}
+            {% block stylesheet %}
+                <!--[if lte IE 8]><![endif]-->
+                <link rel="stylesheet" href="../statics/main.css" />
+                <!--[if lte IE 8]><link rel="../statics/stylesheet" href="ie8.css" /><![endif]-->
+                <!--[if lte IE 9]><link rel="../statics/stylesheet" href="ie9.css" /><![endif]-->
+            {% endblock stylesheet %}
+
+        {% endblock head %}
+
+</head>
+<body>
+    <form method = "post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+    </form>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">nearest</button>
+
+     <table>
+         <tr>
+             <td>
+                 {{ N }}
+             </td>
+
+             <td>
+                 {{ T }}
+             </td>
+
+             <td>
+                 {{ C }}
+             </td>
+
+             <td>
+                 {{ S }}
+             </td>
+
+             <td>
+                 {{ A }}
+             </td>
+
+             <td>
+                 {{ B }}
+             </td>
+         </tr>
+</body>
+</html>
