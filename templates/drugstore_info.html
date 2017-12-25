@@ -4,7 +4,7 @@
     {% load staticfiles %}
         {% block head %}
 
-                <title>{% block title}Photon by HTML5 UP{% endblock title}</title>
+                <title>نمایش اطلاعات داروخانه ها</title>
 
             {% block meta %}
                 <meta charset="utf-8" />
@@ -15,45 +15,84 @@
                 <link rel="stylesheet" href="../statics/main.css" />
                 <!--[if lte IE 8]><link rel="../statics/stylesheet" href="ie8.css" /><![endif]-->
                 <!--[if lte IE 9]><link rel="../statics/stylesheet" href="ie9.css" /><![endif]-->
+                <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+                <link href="../../static/authentication/login.css" rel="stylesheet">
             {% endblock stylesheet %}
 
         {% endblock head %}
 
 </head>
-<body>
-    <form method = "post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-    </form>
+<body class="{% block body_class %}nav-md {% endblock body_class %}">
+    <section id="header">
+        <div class="inner" >
+            <div class="wrapper">
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">nearest</button>
+                <form method = "post" class="text-left">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-md btn-primary" type="submit">جست و جو</button>
+                </form>
 
-     <table>
-         <tr>
-             <td>
-                 {{ N }}
-             </td>
+            </div>
 
-             <td>
-                 {{ T }}
-             </td>
+            <div class="row">
+                <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                 <table>
+                     <tr>
+                         <td>
+                            <thead>
+                            <th>شهر</th>
+                            </thead>
+                        </td>
+                         <td>
+                             {{ c }}
+                         </td>
 
-             <td>
-                 {{ C }}
-             </td>
+                         <td>
+                            <thead>
+                            <th>خیابان</th>
+                            </thead>
+                        </td>
+                         <td>
+                             {{ s }}
+                         </td>
 
-             <td>
-                 {{ S }}
-             </td>
+                         <td>
+                            <thead>
+                            <th>کوچه</th>
+                            </thead>
+                        </td>
+                         <td>
+                             {{ a }}
+                         </td>
 
-             <td>
-                 {{ A }}
-             </td>
+                         <td>
+                            <thead>
+                            <th>پلاک</th>
+                            </thead>
+                        </td>
+                         <td>
+                             {{ bn }}
+                         </td>
 
-             <td>
-                 {{ B }}
-             </td>
-         </tr>
+                         <td>
+                            <thead>
+                            <th>شماره تماس</th>
+                            </thead>
+                        </td>
+                         <td>
+                             {{ t }}
+                         </td>
+                     </tr>
+                 </table>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section id="four" class="main style2 special">
+        <br><br><br><br>
+    </section>
 </body>
 </html>

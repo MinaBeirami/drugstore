@@ -4,9 +4,11 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.timezone import now
 from django.contrib.auth.models import User as U
+from django.utils.encoding import python_2_unicode_compatible
 
 
 # Create your models here.
+@python_2_unicode_compatible
 class Person(U):
     tel = models.CharField(max_length=20)
 
@@ -15,7 +17,7 @@ class Person(U):
     def __str__(self):
         return self.email
 
-
+@python_2_unicode_compatible
 class Drug(models.Model):
     Commercial_name = models.CharField(max_length=20, primary_key=True)
     Generic_name = models.CharField(max_length=20)
@@ -29,12 +31,7 @@ class Drug(models.Model):
     Drug_code = models.IntegerField()
 
     def __str__(self):
-        cn=self.Commercial_name
-        gn=self.Generic_name
-        d=self.Dose
-        se=self.How_to_use
-        arg={'cn':cn,'gn':gn,'d':d,'se':se}
-        return arg
+        return self.Generic_name
 
 class AddressOfDrugstore(models.Model):
     block_number = models.CharField(max_length=5)
@@ -43,6 +40,8 @@ class AddressOfDrugstore(models.Model):
     city = models.CharField(max_length=10)
     tel = models.IntegerField()
     postal_code = models.CharField(max_length=10, primary_key=True)
+    def __str__(self):
+        return self.block_number
 
 
 class OrderModel(models.Model):
@@ -54,16 +53,21 @@ class StorageModel(models.Model):
     drug = models.ForeignKey(Drug, on_delete=models.DO_NOTHING)
     stock = models.IntegerField(default=0)
 
+    # def __str__(self):
+    #     return self.drug
+
 
 class DrugStore(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20,primary_key=True)
     drug_code = models.ForeignKey(Drug, on_delete=models.DO_NOTHING)
     address_list = models.ManyToManyField(AddressOfDrugstore)
     storage_list = models.ManyToManyField(StorageModel)
+    def __str__(self):
+         return self.name
 
 
 class Order(models.Model):
-    patiant = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
-    prescription = models.ManyToManyField(OrderModel)
+    #USERNAME_FIELD = 'email'
+    #prescription = models.ManyToManyField(OrderModel)
     date = models.DateField(default=now)
     drug_store = models.ForeignKey(DrugStore, on_delete=models.DO_NOTHING)

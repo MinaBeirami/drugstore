@@ -27,8 +27,8 @@ urlpatterns = [
     url(r'^loginses$', loginses ),
     url(r'^logoutses$', logoutses ),
     url(r'^showdrugs$', showDrugInformation ),
-    # url(r'^drugInfo$', showDrugInformation ),
-    #
-	# url(r'^order$', makeOrder ),
+    url(r'^showdrugstore$', showDrugstoreInformation ),
+    url(r'^order$',makeOrder),
+    url(r'^whereisdrug$', showDrugsInDrugstore),
 
-]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+ ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

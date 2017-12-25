@@ -10,6 +10,9 @@
             <title>ورود|ثبت نام</title>
         {% endblock title %}
         {% block stylesheet %}
+                <link rel="stylesheet" href="../statics/main.css" />
+                <!--[if lte IE 8]><link rel="../statics/stylesheet" href="ie8.css" /><![endif]-->
+                <!--[if lte IE 9]><link rel="../statics/stylesheet" href="ie9.css" /><![endif]-->
             <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
             <link href="../../static/authentication/login.css" rel="stylesheet">
         {% endblock stylesheet %}
@@ -17,18 +20,32 @@
 </head>
 <body class="{% block body_class %}nav-md {% endblock body_class %}">
     {% block body %}
+        <section id="header">
+        <div class="inner" >
         <div class="wrapper">
+            <div class="row">
+            <div class="col-xs-4"></div>
+                <div class="col-xs-4">
             <form class="form-signin" method="post">
                 {% csrf_token %}
-                  <h2 class="form-signin-heading">Please Sign Up</h2>
+                  <h2 class="form-signin-heading">لطفا اطلاعات خود را وارد کنید</h2>
                     {{ form.as_p }}
                   <!--<input type="text" class="form-control" name="Name" placeholder="name" required="" autofocus="" />-->
                   <!--<input type="text" class="form-control" name="Number" placeholder="number " required="" autofocus="" />-->
                   <!--<input type="email" class="form-control" name="Email" placeholder="email " required="" autofocus="" />-->
 
                   <!--<input type="password" class="form-control" name="password" placeholder="Password" required=""/>-->
-                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">ثبت نام</button>
             </form>
+                </div>
+                <div class="col-xs-4"></div>
+        </div>
+        </div>
+        </div>
+        </section>
+        <section id="four" class="main style2 special">
+        <br><br><br><br>
+    </section>
         </div>
     {% endblock body %}
 

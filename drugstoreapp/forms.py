@@ -21,7 +21,10 @@ class DrugstoreNameForm(forms.Form):
         Name = forms.CharField(max_length=30, required=True)
 
 class ordersForm(forms.Form):
-        Email = forms.CharField(max_length=30, required=True)
-        Drugstore_name=forms.CharField(max_length=30, required=True)
-        Drug_name = forms.CharField(max_length=30, required=True)
-        Number=forms.IntegerField(required=True)
+        USERNAME_FIELD = 'Email'
+        Drugstore_name = forms.ModelMultipleChoiceField(queryset=DrugStore.objects.all(), required=True)
+        Drug_name = forms.ModelMultipleChoiceField(queryset=Drug.objects.all(), required=True)
+        Number = forms.IntegerField(required=True)
+
+class whereISDrugForm(forms.Form):
+        name = forms.ModelMultipleChoiceField(queryset=Drug.objects.all(), required=True)

@@ -1,6 +1,12 @@
 @import url("font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic");
-
+@font-face{
+    font-family:'yekan';
+    src:url(fonts/BYekan.eot);src:url(fonts/BYekan.eot?#iefix) format("embedded-opentype"),
+url(fonts/BYekan.woff) format("woff"),url(fonts/BYekan.ttf) format("truetype")/*url(fonts/BYekan.svg#BYekan) format("svg")*/;
+    font-weight:normal;
+    font-style:normal
+}
 /*
 	Photon by HTML5 UP
 	html5up.net | @ajlkn
@@ -16,6 +22,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		font-family: 'yekan';
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {

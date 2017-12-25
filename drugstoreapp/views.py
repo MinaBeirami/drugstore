@@ -7,6 +7,8 @@ from django.contrib.auth.models import Group
 from .forms import *
 from .models import *
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
+
 
 
 # Create your views here.
@@ -44,12 +46,7 @@ def signup(request):
         return render(request, 'signup.html', arg)
 
 
-# # def login(request):
-# #     return render(request,'login.html')
-# def success(request):
-#     return render(request, 'success.html')
-#
-#
+
 def loginses(request):
     if request.method == 'POST':
         form = PersonLoginForm(request.POST)
@@ -64,7 +61,8 @@ def loginses(request):
                     login(request, user)
                     arg={'username':username}
                     return render(request,'userPage.html',arg)
-            return HttpResponse('eee')
+                msg={'ta':'try agin'}
+            return render(request,'passwordNotTrue.html')
 
 
     else:
@@ -78,73 +76,104 @@ def logoutses(request):
     return redirect('/')
 
 #
-# @login_required(login_url='/loginses')
+
 def showDrugInformation(request):
-    if request.method == 'POST':
-        form = DrugNameForm(request.POST)
-        if form.is_valid():
-            Name = form.cleaned_data['Name']
-            if Drug.objects.filter(Commercial_name=Name).exists() or Drug.objects.filter(Generic_name=Name).exists():
-                cn = Drug.objects.filter(Commercial_name=Name).values('Commercial_name')
-                gn = Drug.objects.filter(Commercial_name=Name).values('Generic_name')
-                dose = Drug.objects.filter(Commercial_name=Name).values('Dose')
-                se = Drug.objects.filter(Commercial_name=Name).values('Side_effects')
-                htu = Drug.objects.filter(Commercial_name=Name).values('How_to_use')
-                di = Drug.objects.filter(Commercial_name=Name).values('Drug_interactions')
-                c = Drug.objects.filter(Commercial_name=Name).values('Compositions')
-                p = Drug.objects.filter(Commercial_name=Name).values('Price')
-                nop = Drug.objects.filter(Commercial_name=Name).values('Necessity_of_prescription')
-                arg = {'cn': Name, 'gn': gn, 'dose': dose, 'se': se, 'htu': htu, 'di': di, 'c': c, 'p': p, 'nop': nop}
 
+        if request.method == 'POST':
+            form = DrugNameForm(request.POST)
+            if form.is_valid():
+                Name = form.cleaned_data['Name']
+                if Drug.objects.filter(Commercial_name=Name).exists():
+                    cn = Drug.objects.filter(Commercial_name=Name).values('Commercial_name').first()
+                    gn = Drug.objects.filter(Commercial_name=Name).values('Generic_name').first()
+                    dose = Drug.objects.filter(Commercial_name=Name).values('Dose').first()
+                    se = Drug.objects.filter(Commercial_name=Name).values('Side_effects').first()
+                    htu = Drug.objects.filter(Commercial_name=Name).values('How_to_use').first()
+                    di = Drug.objects.filter(Commercial_name=Name).values('Drug_interactions').first()
+                    c = Drug.objects.filter(Commercial_name=Name).values('Compositions').first()
+                    p = Drug.objects.filter(Commercial_name=Name).values('Price').first()
+                    nop = Drug.objects.filter(Commercial_name=Name).values('Necessity_of_prescription').first()
+                    arg = {'cn': cn.get('Commercial_name'), 'gn':gn.get('Generic_name'),'dose': dose.get('Dose'), 'se': se.get('Side_effect'), 'htu': htu.get('How_to_use'), 'di': di.get('Drug_interactions'), 'c': c.get('Compositions'), 'p': p.get('Price'), 'nop': nop.get('Necessity_of_prescription')}
+                    return render(request, 'drug_info.html', arg)
+                else:
+                    return render(request,'DrugNotExist.html')
+
+        else:
+                form = DrugNameForm()
+                arg = {'form': form}
+                print(request.user)
                 return render(request, 'drug_info.html', arg)
-            else:
-                return render(request,'DrugNotExist.html')
 
+#
+def showDrugstoreInformation(request):
+    if request.method == 'POST':
+        form = DrugstoreNameForm(request.POST)
+        if form.is_valid():
+            name=form.cleaned_data['Name']
+            if DrugStore.objects.filter(name=name).exists():
+                ad=DrugStore.objects.filter(name=name).values('address_list').first().get('address_list')
+                if AddressOfDrugstore.objects.filter(postal_code=ad).exists():
+                    bn=AddressOfDrugstore.objects.filter(postal_code=ad).values('block_number').first()
+                    a = AddressOfDrugstore.objects.filter(postal_code=ad).values('alley').first()
+                    s = AddressOfDrugstore.objects.filter(postal_code=ad).values('street').first()
+                    c=AddressOfDrugstore.objects.filter(postal_code=ad).values('city').first()
+                    t = AddressOfDrugstore.objects.filter(postal_code=ad).values('tel').first()
+                    arg={'bn':bn.get('block_number'),'a':a.get('alley'),'s':s.get('street'),'c':c.get('city'),'t':t.get('tel'),}
+            return render(request, 'drugstore_info.html', arg)
     else:
-            form = DrugNameForm()
-            arg = {'form': form}
-            print(request.user)
-            return render(request, 'drug_info.html', arg)
+        form = DrugstoreNameForm()
+        arg = {'form': form}
+        return render(request, 'drugstore_info.html', arg)
 
-#
-# def showDrugstoreInformation(request):
-#     if request.method == 'POST':
-#         form = DrugstoreNameForm(request.POST)
-#         if form.is_valid():
-#             Name = form.cleaned_dagstore.objects.values_list('Alley')
-#             B=AddressOfDrugstore.objects.values_list('Block_number')
-#             arg={'N':N,'T':T,'C':C,'S':S,'A':A,'B':B}
-#             return render(request, 'drugstore_info.html', arg)
-#     else:
-#         form = DrugstoreNameForm()
-#         arg = {'form': form}
-#         return render(request, 'drugstore_info.html', arg)
-
-#
+@login_required(login_url='/loginses')
 def makeOrder(request):
     if request.method == 'POST':
         form = ordersForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['Drug_name']
-            drugstore_Name = form.cleaned_data['Name']
-            if DrugStore.objects.filter(Name=name).exists():
-                Code_flag = DrugStore.objects.values_list('Code')
-                # if AddressOfDrugstore.objects.filter(Drugstore_Code=Code_flag):
-                #     N = DrugStore.objects.values_list('Name')
-                #     T = DrugStore.objects.values_list('Telephone')
-                #     C = AddressOfDrugstore.objects.values_list('City')
-                #     S = AddressOfDrugstore.objects.values_list('Street')
-                #     A = AddressOfDrugstore.cleaned_data['Drugstore_name']
-            if Drug.objects.filter(Commercial_name=name).exists() or Drug.objects.filter(Generic_name=name).exists():
-                c = Drug.objects.values_list('Drug_code')
-                if DrugStore.objects.filter(Drug_Code=c).exists() and DrugStore.objects.filter(
-                        Name=drugstore_Name).exists():
-                    order = Order(patient_email=form.cleaned_data['Email'],
-                                  number_of_drug=form.cleaned_data['Number'],
+            drug_name = form.cleaned_data['Drug_name']
+            drugstore_name = form.cleaned_data['Drugstore_name']
+            no=form.cleaned_data['Number']
+            if Drug.objects.filter(Commercial_name=drug_name).exists() or Drug.objects.filter(Generic_name=drug_name).exists():
+                c = Drug.objects.values('Commercial_name')
+                if DrugStore.objects.filter(drug_code=c).exists()and DrugStore.objects.filter(name=drugstore_name).exists():
+                    d=Drug.objects.get(Commercial_name=drug_name)
+                    om=OrderModel(drug=d,quantity=no)
+                    om.save()
+                    a=getattr(om,'id')
+                    w=OrderModel.objects.filter(id=a).values('drug').first()
+                    q=OrderModel.objects.filter(id=a).values('quantity').first().get('quantity')
+                    q=OrderModel.objects.filter(id=a).values('drug').first().get('drug')
+
+                    d=Drug.objects.filter(Commercial_name=q).first()
+                    order = Order(date=datetime.now(),
+                                  drug_store=form.cleaned_data['Drugstore_name'].first(),
                                   )
                     order.save()
-                    return render(request, 'success.html')
+                    return render(request, 'orderAdded.html')
+                #else:
+                return render(request, 'orderNotExist.html')
     else:
         form = ordersForm()
         arg = {'form': form}
         return render(request, 'orders.html', arg)
+def showDrugsInDrugstore(request):
+    arg={}
+    global j
+    if request.method == 'POST':
+        form = whereISDrugForm(request.POST)
+        if form.is_valid():
+            name= form.cleaned_data['Drug_name']
+            d=Drug.objects.filter(Commercial_name=name).values('Commercial_name')
+            for i in DrugStore.objects.all():
+                if Drug.objects.filter(drug_code=d).exists():
+                    j=j+1
+                    arg['j']=i.filter(drug_code=d).values('name').first().get('name')
+            return render(request,'whereIsDrud.html',arg)
+        else:
+            return HttpResponse('no')
+    else:
+        form = whereISDrugForm()
+        arg = {'form': form}
+        return render(request, 'whereIsDrug.html', arg)
+
+

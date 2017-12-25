@@ -10,7 +10,7 @@
 		{% load staticfiles %}
         {% block head %}
 
-                <title>{% block title}Photon by HTML5 UP{% endblock title}</title>
+                <title>سفارش</title>
 
             {% block meta %}
                 <meta charset="utf-8" />
@@ -18,31 +18,42 @@
             {% endblock meta %}
             {% block stylesheet %}
                 <!--[if lte IE 8]><![endif]-->
-                <link rel="stylesheet" href="../../static/authentication/main.css" />
-                <!--[if lte IE 8]><link rel="../../static/authentication/stylesheet" href="ie8.css" /><![endif]-->
-                <!--[if lte IE 9]><link rel="../../static/authentication/stylesheet" href="ie9.css" /><![endif]-->
+                     <link rel="stylesheet" href="../statics/main.css" />
+                <!--[if lte IE 8]><link rel="../statics/stylesheet" href="ie8.css" /><![endif]-->
+                <!--[if lte IE 9]><link rel="../statics/stylesheet" href="ie9.css" /><![endif]-->
+            <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+            <link href="../../static/authentication/login.css" rel="stylesheet">
             {% endblock stylesheet %}
 
         {% endblock head %}
 	</head>
-	<body>
+	<body class="{% block body_class %}nav-md {% endblock body_class %}">
 
 		<!-- Header -->
 			<section id="header">
 				<div class="inner">
-					<span class="icon major fa-cloud"></span>
-					<h1>به اپلیکیشن خدمات داروخانه ای خودش آمدید</h1>
+				<!--<div class="wrapper">-->
+				<div class="row">
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4">
 
                          <form method = "post">
                              <div class="form-group">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">Done!</button>
+                            <button class="btn btn-md btn-primary" type="submit">ثبت سفارش </button>
                              </div>
                          </form>
+					</div>
+					<div class="col-xs-4"></div>
+				</div>
 
 				</div>
+				<!--</div>-->
 			</section>
+		    <section id="four" class="main style2 special">
+        		<br><br><br><br>
+    		</section>
 
 		<!-- One -->
 			<!--<section id="one" class="main style1">-->
@@ -126,18 +137,18 @@
 			<!--</section>-->
 
 		<!-- Four -->
-			<section id="four" class="main style2 special">
-				<div class="container">
-					<header class="major">
-						<!--<h2>Ipsum feugiat consequat?</h2>-->
-					</header>
-					<!--<p>Sed lacus nascetur ac ante amet sapien.</p>-->
-					<ul class="actions uniform">
-						<li><a href="signup" class="button special">ثبت نام</a></li>
-						<li><a href="login" class="button">ورود</a></li>
-					</ul>
-				</div>
-			</section>
+			<!--<section id="four" class="main style2 special">-->
+				<!--<div class="container">-->
+					<!--<header class="major">-->
+						<!--&lt;!&ndash;<h2>Ipsum feugiat consequat?</h2>&ndash;&gt;-->
+					<!--</header>-->
+					<!--&lt;!&ndash;<p>Sed lacus nascetur ac ante amet sapien.</p>&ndash;&gt;-->
+					<!--<ul class="actions uniform">-->
+						<!--<li><a href="signup" class="button special">ثبت نام</a></li>-->
+						<!--<li><a href="login" class="button">ورود</a></li>-->
+					<!--</ul>-->
+				<!--</div>-->
+			<!--</section>-->
 
 		<!-- Five -->
 		<!--

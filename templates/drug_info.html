@@ -4,7 +4,7 @@
     {% load staticfiles %}
         {% block head %}
 
-                <title>{% block title}Photon by HTML5 UP{% endblock title}</title>
+                <title>نمایش اطلاعات دارو</title>
 
             {% block meta %}
                 <meta charset="utf-8" />
@@ -22,117 +22,122 @@
         {% endblock head %}
 </head>
 <body class="{% block body_class %}nav-md {% endblock body_class %}">
-<div class="wrapper">
+    <section id="header">
+        <div class="inner" >
+            <div class="wrapper">
 
-    <form method = "post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
-    </form>
+                <form method = "post" class="text-left">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-md btn-primary" type="submit">Search</button>
+                </form>
 
-</div>
+            </div>
 
+            <h4 class="text-center">  اطلاعات کلی</h4>
+            <div class="row">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-10">
+                        <table>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>اسم تبلیغاتی</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ cn }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>اسم مورد استفاده</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ gn }}
+                                </td>
+                            </tr>
 
-
-    <h4>  اطلاعات کلی</h4>
-<div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-10">
-            <table>
-                <tr>
-                    <td>
-                        <thead>
-                        <th>اسم تبلیغاتی</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ cn }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <thead>
-                        <th>اسم مورد استفاده</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ gn }}
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <thead>
-                        <th>دوز</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ dose }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <thead>
-                        <th>اثرات جانبی</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ se }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <thead>
-                        <th>طریقه استفاده</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ htu }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <thead>
-                        <th>تضاد دارویی</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ di }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <thead>
-                        <th>ترکیبات</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ c }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <thead>
-                        <th>قیمت</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ p }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <thead>
-                        <th>ضرورت نسخه</th>
-                        </thead>
-                    </td>
-                    <td>
-                        {{ nop }}
-                    </td>
-                </tr>
-            </table>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>دوز</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ dose }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>اثرات جانبی</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ se }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>طریقه استفاده</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ htu }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>تضاد دارویی</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ di }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>ترکیبات</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ c }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>قیمت</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ p }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <thead>
+                                    <th>ضرورت نسخه</th>
+                                    </thead>
+                                </td>
+                                <td>
+                                    {{ nop }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
         </div>
-    </div>
+    </section>
+    <section id="four" class="main style2 special">
+        <br><br><br><br>
+    </section>
 <!---->
 </section>
 </body>
