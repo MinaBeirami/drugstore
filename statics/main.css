@@ -1833,7 +1833,7 @@ url(fonts/BYekan.woff) format("woff"),url(fonts/BYekan.ttf) format("truetype")/*
 
 		a:hover {
 			border-bottom-color: transparent !important;
-			color: #6bd4c8;
+			color: #c47c09;
 		}
 
 	strong, b {
@@ -2868,7 +2868,7 @@ url(fonts/BYekan.woff) format("woff"),url(fonts/BYekan.ttf) format("truetype")/*
 			#header .button.special {
 				background-color: #ffffff;
 				box-shadow: inset 0 0 0 1px #ffffff !important;
-				color: #4686a0 !important;
+				color: #c18f0f !important;
 			}
 
 				#header input[type="submit"].special:hover,

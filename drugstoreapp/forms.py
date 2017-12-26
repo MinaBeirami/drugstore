@@ -8,7 +8,7 @@ class PersonSignUpForm(forms.Form):
         last_name = forms.CharField(max_length=50,required=True)
         email = forms.EmailField(max_length=30, required=True)
         password = forms.CharField(max_length=30,required=True)
-        are_you_mariz = forms.BooleanField(required=True)
+        are_you_mariz = forms.BooleanField()
 
 class PersonLoginForm(forms.Form):
         username = forms.CharField(max_length=30,required=True)

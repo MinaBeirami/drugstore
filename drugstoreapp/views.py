@@ -164,16 +164,19 @@ def showDrugsInDrugstore(request):
         if form.is_valid():
             name= form.cleaned_data['Drug_name']
             d=Drug.objects.filter(Commercial_name=name).values('Commercial_name')
-            for i in DrugStore.objects.all():
-                if Drug.objects.filter(drug_code=d).exists():
-                    j=j+1
-                    arg['j']=i.filter(drug_code=d).values('name').first().get('name')
-            return render(request,'whereIsDrud.html',arg)
+            latest_question_list = DrugStore.objects.order_by('-drug_code')
+            if Drug.objects.filter(drug_code=d).exists():
+                output = ', '.join([q.drug_code for q in latest_question_list].first())
+            return HttpResponse(output)
+            # for i in DrugStore.objects.all():
+            #     if Drug.objects.filter(drug_code=d).exists():
+            #         j=j+1
+            #         arg['j']=i.filter(drug_code=d).values('name').first().get('name')
+            # return render(request,'whereIsDrud.html',arg)
         else:
             return HttpResponse('no')
     else:
         form = whereISDrugForm()
         arg = {'form': form}
         return render(request, 'whereIsDrug.html', arg)
-
 
